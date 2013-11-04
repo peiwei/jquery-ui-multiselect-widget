@@ -41,7 +41,9 @@
       autoOpen: false,
       multiple: true,
       position: {},
-      appendTo: "body"
+      appendTo: "body",
+      prevSelector: '',
+      nextSelector: ''
     },
 
     _create: function() {
@@ -282,6 +284,7 @@
         focus: function() {
           if(!button.hasClass('ui-state-disabled')) {
             $(this).addClass('ui-state-focus');
+              button.trigger('click');
           }
         },
         blur: function() {
@@ -342,6 +345,11 @@
           case 9: // tab
             case 27: // esc
             self.close();
+            if(e.shiftKey) {
+              $(self.options.prevSelector).focus();
+            }else{
+              $(self.options.nextSelector).focus();
+            }
           break;
           case 38: // up
             case 40: // down
@@ -692,6 +700,10 @@
       var menu = this.menu;
 
       switch(key) {
+        case 'prevSelector':
+        case 'nextSelector':
+          this.options[key] = value;
+          break;
         case 'header':
           menu.find('div.ui-multiselect-header')[value ? 'show' : 'hide']();
           break;
