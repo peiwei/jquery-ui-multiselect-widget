@@ -284,7 +284,8 @@
         focus: function() {
           if(!button.hasClass('ui-state-disabled')) {
             $(this).addClass('ui-state-focus');
-              button.trigger('click');
+              self.open();
+              self._isOpen = false; // to prevent focus and click to close
           }
         },
         blur: function() {
@@ -357,6 +358,7 @@
             case 39: // right
             self._traverse(e.which, this);
           break;
+          case 32:
           case 13: // enter
             $(this).find('input')[0].click();
           break;
