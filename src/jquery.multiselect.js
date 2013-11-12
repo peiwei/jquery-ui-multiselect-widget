@@ -359,6 +359,11 @@
             self._traverse(e.which, this);
           break;
           case 32:
+            $(this).find('input')[0].click();
+          break;
+          default:
+           //console.log('default' + e.which);
+          break;
           case 13: // enter
             $(this).find('input')[0].click();
           break;
