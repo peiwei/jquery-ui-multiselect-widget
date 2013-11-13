@@ -359,7 +359,9 @@
             self._traverse(e.which, this);
           break;
           case 32:
-            $(this).find('input')[0].click();
+            if (!$.browser.mozilla) { // firefox automatically issues click
+                $(this).find('input')[0].click();
+            }
           break;
           default:
            //console.log('default' + e.which);
